@@ -1,94 +1,101 @@
 # AI-Powered Smart Waste Segregation System
 
-An intelligent automated waste segregation system that combines deep learning, computer vision, and embedded hardware to identify and separate waste into four categories.
+An intelligent waste segregation system that combines deep learning, computer vision, and embedded hardware to automate the identification and sorting of waste into four categories: Plastic, E-Waste, Organic, and Recyclable.
 
-The system uses **EfficientNet-B0** for local image classification, Google Gemini API integration, Raspberry Pi 5, Arduino UNO, and automated servo-stepper motor control.
+The system uses **EfficientNet-B0** for image classification, integrates the **Google Gemini API**, and connects a **Raspberry Pi 5** with an **Arduino UNO** to control the physical waste segregation mechanism.
 
 ## Project Overview
 
-Improper waste segregation creates environmental pollution and makes recycling difficult. This project aims to automate waste classification and physical segregation using artificial intelligence and embedded systems.
+Improper waste disposal and the mixing of recyclable and non-recyclable materials create significant environmental challenges. This project explores an automated approach to waste segregation using artificial intelligence and hardware-based automation.
 
-The system identifies waste items and directs them into their designated compartments.
+A camera captures an image of the waste item, the trained deep learning model predicts its category, and the hardware mechanism directs the item into its corresponding compartment.
+
+The system combines AI-based classification with motor control to demonstrate an end-to-end smart waste segregation solution.
 
 ## Waste Categories
 
 | Category | Description |
 |---|---|
-| PLASTIC | Plastic waste |
-| E_WASTE | Electronic waste |
-| ORGANIC | Biodegradable waste |
-| RECYCLABLE | Recyclable materials |
+| **PLASTIC** | Plastic waste materials |
+| **E_WASTE** | Electronic waste |
+| **ORGANIC** | Biodegradable waste |
+| **RECYCLABLE** | Recyclable materials |
 
 ## Key Features
 
-- AI-based waste classification using EfficientNet-B0.
-- Google Gemini API integration.
-- Local EfficientNet-B0 classification fallback.
-- Raspberry Pi 5 integration.
-- Arduino UNO-based motor control.
-- Automated four-compartment waste segregation.
-- PyQt6-based motion controller interface.
-- Limit-switch-based homing and safety mechanisms.
-- Dataset cleaning, duplicate detection and evaluation tools.
+- **Deep Learning Classification:** Waste identification using the EfficientNet-B0 architecture.
+- **Gemini API Integration:** Google Gemini API integration within the system.
+- **Local Prediction:** EfficientNet-B0-based local classification fallback.
+- **Real-Time Camera Input:** Image capture and processing using OpenCV.
+- **Hardware Automation:** Raspberry Pi 5 and Arduino UNO integration.
+- **Automated Sorting:** Servo and stepper motor-based waste routing.
+- **Motion Control Interface:** PyQt6-based graphical interface.
+- **Safety Mechanisms:** Limit-switch-based homing and movement protection.
+- **Dataset Processing:** Tools for dataset cleaning, duplicate detection, and evaluation.
 
 ## System Architecture
 
-The system combines software-based intelligence with hardware-based automation.
+The system follows a sequence of image acquisition, AI-based classification, and hardware-controlled waste segregation.
 
-**Main processing flow:**
+### Processing Workflow
 
-1. Camera captures a waste item.
-2. AI classification identifies the waste category.
-3. The classification result is mapped to the corresponding bin.
-4. Raspberry Pi communicates with the motion controller.
-5. Arduino UNO controls the servo and stepper motor.
-6. The waste is directed into the selected compartment.
+1. **Image Capture:** A USB camera captures an image of the waste item.
+2. **Image Processing:** The captured image is processed using computer vision techniques.
+3. **Waste Classification:** EfficientNet-B0 predicts the waste category. Gemini API integration is also included in the system.
+4. **Category Mapping:** The predicted category is mapped to its corresponding waste compartment.
+5. **Hardware Communication:** The Raspberry Pi communicates with the Arduino UNO.
+6. **Motor Control:** The Arduino controls the servo and stepper motor.
+7. **Waste Segregation:** The mechanism directs the waste item into the selected compartment.
 
 ## Technology Stack
 
 ### Artificial Intelligence and Software
 
-- Python
-- PyTorch
-- Torchvision
-- EfficientNet-B0
-- OpenCV
-- Google Gemini API
-- PyQt6
-- NumPy
-- Scikit-learn
+| Technology | Purpose |
+|---|---|
+| Python | Main programming language |
+| PyTorch | Deep learning framework |
+| Torchvision | Image transformations and model utilities |
+| EfficientNet-B0 | Waste classification model |
+| OpenCV | Image capture and processing |
+| Google Gemini API | AI API integration |
+| PyQt6 | Graphical user interface |
+| NumPy | Numerical operations |
+| Scikit-learn | Model evaluation and metrics |
 
 ### Hardware Components
 
-- Raspberry Pi 5
-- Arduino UNO
-- A4988 Stepper Motor Driver
-- NEMA 17 Stepper Motor
-- Servo Motor
-- USB Camera
-- Limit Switches
-- Four-compartment waste bin
+| Component | Purpose |
+|---|---|
+| Raspberry Pi 5 | AI inference and system-level processing |
+| Arduino UNO | Hardware and motor control |
+| A4988 Driver | Stepper motor control |
+| NEMA 17 Stepper Motor | Bin positioning |
+| Servo Motor | Waste-routing mechanism |
+| USB Camera | Waste image capture |
+| Limit Switches | Homing and movement safety |
+| Four-Compartment Bin | Waste collection and segregation |
 
 ## Model Performance
 
-The EfficientNet-B0 model was trained and evaluated using a combined dataset of 15,110 images.
+The EfficientNet-B0 model was trained using a combined dataset of **15,110 images** and evaluated on a separate held-out test dataset.
 
 ### Overall Evaluation Results
 
 | Metric | Result |
 |---|---:|
-| Validation Accuracy | 97.88% |
-| Test Accuracy | 97.44% |
+| Validation Accuracy | **97.88%** |
+| Test Accuracy | **97.44%** |
 | Correct Test Predictions | 2,208 / 2,266 |
 | Macro Precision | 96.84% |
 | Macro Recall | 96.79% |
 | Macro F1-Score | 96.82% |
 
-### Class-wise F1-Score
+### Class-Wise F1-Score
 
 | Waste Category | F1-Score |
 |---|---:|
-| E-WASTE | 99.30% |
+| E_WASTE | 99.30% |
 | ORGANIC | 98.84% |
 | PLASTIC | 91.58% |
 | RECYCLABLE | 97.55% |
@@ -97,7 +104,7 @@ The EfficientNet-B0 model was trained and evaluated using a combined dataset of 
 
 | Parameter | Value |
 |---|---|
-| Model | EfficientNet-B0 |
+| Model Architecture | EfficientNet-B0 |
 | Image Size | 224 × 224 |
 | Epochs | 20 |
 | Batch Size | 32 |
@@ -106,20 +113,21 @@ The EfficientNet-B0 model was trained and evaluated using a combined dataset of 
 | Weight Decay | 0.0001 |
 | Loss Function | Weighted Cross-Entropy Loss |
 
+The evaluation results indicate strong classification performance across the four waste categories. Plastic classification has the lowest class-wise F1-score and remains an area for improvement.
+
 ## Dataset Information
 
 The combined dataset contains **15,110 images** collected from multiple publicly available sources.
 
-The dataset was cleaned, organized, deduplicated and divided into training, validation and testing sets.
+The dataset underwent preprocessing, cleaning, duplicate detection, and organization before being divided into training, validation, and testing sets.
 
-Raw dataset images are not redistributed in this repository.
+Raw dataset images are not included in this repository.
 
 For dataset sources and licensing information, refer to:
 
-- `dataset/README.md`
-- `dataset/dataset_sources.md`
+- [`docs/dataset_sources.md`](docs/dataset_sources.md)
 
-Please obtain the original datasets from their respective publishers and comply with their licensing terms.
+Please obtain the original datasets from their respective publishers and follow their licensing and usage conditions.
 
 ## Repository Structure
 
@@ -127,7 +135,9 @@ Please obtain the original datasets from their respective publishers and comply 
 AI-Smart-Waste-Segregation-System/
 │
 ├── dataset/
-│   ├── README.md
+│   └── .gitkeep
+│
+├── docs/
 │   └── dataset_sources.md
 │
 ├── hardware/
@@ -150,9 +160,9 @@ AI-Smart-Waste-Segregation-System/
 │   ├── predict.py
 │   ├── camera_predict.py
 │   ├── motion_controller_gui.py
+│   ├── config.json
 │   └── ...
 │
-├── .gitignore
 ├── README.md
 └── requirements.txt
 ```
@@ -162,8 +172,7 @@ AI-Smart-Waste-Segregation-System/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/vmc6433/AI-Smart-Waste-Segregation-System.git
-
+git clone https://github.com/ambari2208/AI-Smart-Waste-Segregation-System.git
 cd AI-Smart-Waste-Segregation-System
 ```
 
@@ -176,13 +185,11 @@ python -m venv .venv
 ### 3. Activate the Environment
 
 **Windows:**
-
-```powershell
+```bash
 .venv\Scripts\activate
 ```
 
-**Linux:**
-
+**Linux / Raspberry Pi OS / macOS:**
 ```bash
 source .venv/bin/activate
 ```
@@ -193,64 +200,73 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-**Note:** PyTorch installation may require a platform-specific procedure, particularly on Raspberry Pi 5.
+**Note:** PyTorch and other hardware-dependent packages may require platform-specific installation, particularly on Raspberry Pi 5.
 
 ### 5. Configure Gemini API
 
-Create a local `.env` file in the project root directory.
+If using the Gemini API integration, configure your API key locally.
 
-Add:
+Create a `.env` file in the project root and add:
 
 ```env
 GEMINI_API_KEY=your_api_key_here
 ```
 
-Never upload your `.env` file or expose your API key publicly.
+Keep your API key private. Never commit your `.env` file or expose credentials publicly.
 
 ### 6. Dataset Setup
 
-The raw datasets are not included in this repository. Obtain the original datasets from their publishers, follow their licensing conditions, and prepare the directory structure expected by the training scripts.
+The raw dataset is not distributed with this repository. Obtain the original datasets from their respective publishers and prepare the directory structure required by the training scripts.
 
-## Hardware and Software Integration
+## Hardware Integration
 
-The project integrates:
+The hardware subsystem connects the AI classification output to the physical segregation mechanism.
 
-- Raspberry Pi 5 for AI inference and system-level processing.
-- Arduino UNO for motor control and safety logic.
-- Servo motor for waste-routing operation.
-- NEMA 17 stepper motor for bin positioning.
-- Limit switches for homing and movement protection.
+- **Raspberry Pi 5:** Handles AI inference and system-level operations.
+- **Arduino UNO:** Executes hardware control instructions.
+- **Servo Motor:** Supports the waste-routing mechanism.
+- **NEMA 17 Stepper Motor:** Controls compartment positioning.
+- **A4988 Driver:** Drives the stepper motor.
+- **Limit Switches:** Support homing and movement protection.
+
+The Arduino control program is available at:
+
+[`hardware/arduino/waste_motion_controller.ino`](hardware/arduino/waste_motion_controller.ino)
 
 ## Project Demonstration
 
-Watch the complete working demonstration of our AI-Powered Smart Waste Segregation System.
+Watch the working demonstration of the AI-Powered Smart Waste Segregation System:
 
-[![AI Waste Segregation System Demonstration](https://img.youtube.com/vi/HUJFUk7StMc/maxresdefault.jpg)](https://youtu.be/HUJFUk7StMc)
-
-**[▶ Watch the Full Project Demonstration on YouTube](https://youtu.be/HUJFUk7StMc)**
+[▶ Watch the Project Demonstration on YouTube](https://youtu.be/HUJFUk7StMc)
 
 ## Results and Evaluation
 
-The EfficientNet-B0 model achieved 97.44% test accuracy on the held-out test dataset.
+The trained EfficientNet-B0 model achieved **97.44% test accuracy** on 2,266 test images.
 
-The results demonstrate strong classification performance across the four waste categories. PLASTIC had the lowest class-wise F1-score, indicating scope for further improvement in handling variations in plastic appearance.
+The project also includes evaluation outputs and training records for further analysis:
+
+- `results/evaluation_report.txt`
+- `results/evaluation_results.json`
+- `results/confusion_matrix.png`
+- `results/error_analysis.csv`
+- `results/training_history.json`
 
 ## Future Scope
 
-- Expand the dataset with more real-world waste images.
+- Expand the dataset with more diverse real-world waste images.
 - Improve classification of visually similar waste materials.
-- Optimize inference speed on edge devices.
-- Integrate additional waste categories.
-- Improve mechanical reliability and system scalability.
+- Optimize model inference for edge devices.
+- Introduce additional waste categories.
+- Improve the mechanical design and reliability of the segregation mechanism.
 - Develop remote monitoring and performance analytics.
 
 ## Acknowledgements
 
-This project uses publicly available datasets and open-source software libraries. Please refer to the dataset documentation and the respective project licenses for attribution and usage conditions.
+This project makes use of publicly available datasets and open-source software libraries. Credit and licensing information for dataset sources should be reviewed in the dataset documentation and the respective publishers' terms.
 
 ## License
 
-License and third-party attribution terms are to be finalized. Until then, please refer to the original dataset and software licenses before reusing project materials.
+License and third-party attribution terms are to be finalized. Until a project license is added, please refer to the original licenses of the datasets and software libraries before reusing their materials.
 
 ---
 
